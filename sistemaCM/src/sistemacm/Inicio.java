@@ -3,12 +3,27 @@ package sistemacm;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Inicio extends javax.swing.JFrame {
     
     fondoPanel fondo = new fondoPanel();
+    
+    public static final String URL = "jdbc:mysql://localhost:3306/creacionesm";
+    public static  String USERNAME="root";
+    public static  String PASSWD="Elizabeth20??";
+    public static String roles_id,correo,contraseña;
+    public Inicio conexion = new Inicio();       
+    public PreparedStatement  prepared;
+    public ResultSet result;
+    
+    
     
 
     public Inicio() {
@@ -23,51 +38,56 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new fondoPanel2();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        fondoInicio = new fondoPanel2();
+        etiquetaCorreo = new javax.swing.JLabel();
+        textoCorreo = new javax.swing.JTextField();
+        etiquetaContraseña = new javax.swing.JLabel();
+        botonIngresar = new javax.swing.JButton();
+        textoContraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout fondoInicioLayout = new javax.swing.GroupLayout(fondoInicio);
+        fondoInicio.setLayout(fondoInicioLayout);
+        fondoInicioLayout.setHorizontalGroup(
+            fondoInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 216, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        fondoInicioLayout.setVerticalGroup(
+            fondoInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 192, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Correo");
+        etiquetaCorreo.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        etiquetaCorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiquetaCorreo.setText("Correo");
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textoCorreo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textoCorreoActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Contraseña");
+        etiquetaContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        etiquetaContraseña.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiquetaContraseña.setText("Contraseña");
 
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonIngresar.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        botonIngresar.setText("Ingresar");
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonIngresarActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textoContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textoContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoContraseñaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,32 +100,32 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(302, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fondoInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textoCorreo)
+                    .addComponent(etiquetaContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textoContraseña)
+                    .addComponent(etiquetaCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(jButton1)))
+                        .addComponent(botonIngresar)))
                 .addContainerGap(269, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fondoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(etiquetaCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(etiquetaContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(botonIngresar)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -114,14 +134,62 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCorreoActionPerformed
+        
+        
+    }//GEN-LAST:event_textoCorreoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        correo=textoCorreo.getText();
+        contraseña=textoContraseña.getText();
+        
+        try {
+            Connection conectar = conexion.getConnection();
+            prepared=conectar.prepareStatement("SELECT * FROM personas Where roles_id = ?");
+            prepared.setString(1, String.valueOf(textoCorreo));
+            result = prepared.executeQuery();
+            
+                if(result.next()){
+                    
+                    if(result.getString("roles_id")=="1"){
+                         new Administrador().setVisible(true);
+                    }else if(result.getString("roles_id")=="2"){
+                        new Finanzas().setVisible(true);
+                    }else if(result.getString("roles_id")=="3"){
+                        new RecursosHumanos().setVisible(true);
+                    }
+            }else{
+                JOptionPane.showMessageDialog(null, "¡El usuario no existe!");
+            }
+            
+            conectar.close();
+        }catch (Exception e) {
+            System.err.println("Error"+e);
+        }
+        
+    }//GEN-LAST:event_botonIngresarActionPerformed
 
+    private void textoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoContraseñaActionPerformed
+
+        public Connection getConnection(){
+
+    Connection conexion = null;
+    
+    try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conexion = DriverManager.getConnection(URL,USERNAME,PASSWD);
+        
+        
+    }catch (Exception e){
+        System.err.println("Error"+e);
+    }
+    
+    
+    return conexion;
+}
+        
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -132,13 +200,13 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton botonIngresar;
+    private javax.swing.JLabel etiquetaContraseña;
+    private javax.swing.JLabel etiquetaCorreo;
+    private javax.swing.JPanel fondoInicio;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField textoContraseña;
+    private javax.swing.JTextField textoCorreo;
     // End of variables declaration//GEN-END:variables
 
     class fondoPanel extends JPanel

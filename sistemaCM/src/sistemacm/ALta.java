@@ -19,90 +19,90 @@ public class ALta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new fondoPanel2();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        presentacionAlta = new javax.swing.JLabel();
+        etiquetaNombre = new javax.swing.JLabel();
+        textoNombre = new javax.swing.JTextField();
+        etiquetaCorreo = new javax.swing.JLabel();
+        textoCorreo = new javax.swing.JTextField();
+        etiquetaContraseña = new javax.swing.JLabel();
+        textoContraseña = new javax.swing.JTextField();
+        etiquetaDireccion = new javax.swing.JLabel();
+        textoDireccion = new javax.swing.JTextField();
+        etiquetaTelefono = new javax.swing.JLabel();
+        textoTelefono = new javax.swing.JTextField();
+        botonAlta = new javax.swing.JButton();
+        fondoAlta = new fondoPanel2();
+        etiquetaArea = new javax.swing.JLabel();
+        comboAreas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel1.setText("Ingrese los datos del empleado");
+        presentacionAlta.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        presentacionAlta.setText("Ingrese los datos del empleado");
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel2.setText("Nombre:");
+        etiquetaNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaNombre.setText("Nombre:");
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textoNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textoNombreActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel3.setText("Correo");
+        etiquetaCorreo.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaCorreo.setText("Correo");
 
-        jTextField2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoCorreo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel4.setText("Contraseña");
+        etiquetaContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaContraseña.setText("Contraseña");
 
-        jTextField3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel5.setText("Dirección");
+        etiquetaDireccion.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaDireccion.setText("Dirección");
 
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        textoDireccion.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                textoDireccionActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel6.setText("Teléfono");
+        etiquetaTelefono.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaTelefono.setText("Teléfono");
 
-        jTextField5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        textoTelefono.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton1.setText("Alta de usuario");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAlta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonAlta.setText("Alta de usuario");
+        botonAlta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAltaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout fondoAltaLayout = new javax.swing.GroupLayout(fondoAlta);
+        fondoAlta.setLayout(fondoAltaLayout);
+        fondoAltaLayout.setHorizontalGroup(
+            fondoAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 296, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        fondoAltaLayout.setVerticalGroup(
+            fondoAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 249, Short.MAX_VALUE)
         );
 
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jLabel7.setText("Área");
+        etiquetaArea.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaArea.setText("Área");
 
-        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboAreas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        comboAreas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboAreasActionPerformed(evt);
             }
         });
 
@@ -113,89 +113,87 @@ public class ALta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiquetaDireccion)
+                    .addComponent(etiquetaContraseña)
+                    .addComponent(etiquetaCorreo)
+                    .addComponent(presentacionAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etiquetaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoNombre)
+                    .addComponent(textoCorreo)
+                    .addComponent(textoContraseña)
+                    .addComponent(etiquetaTelefono)
+                    .addComponent(textoDireccion)
+                    .addComponent(etiquetaArea)
+                    .addComponent(textoTelefono)
+                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jButton1)
+                        .addComponent(botonAlta)
                         .addContainerGap(139, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fondoAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(presentacionAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(etiquetaNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(etiquetaCorreo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(etiquetaContraseña)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(etiquetaDireccion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(etiquetaTelefono)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(etiquetaArea)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(37, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(fondoAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textoNombreActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void textoDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoDireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_textoDireccionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonAltaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboAreasActionPerformed
 
     public static void main(String args[]) {
 
@@ -207,21 +205,21 @@ public class ALta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton botonAlta;
+    private javax.swing.JComboBox<String> comboAreas;
+    private javax.swing.JLabel etiquetaArea;
+    private javax.swing.JLabel etiquetaContraseña;
+    private javax.swing.JLabel etiquetaCorreo;
+    private javax.swing.JLabel etiquetaDireccion;
+    private javax.swing.JLabel etiquetaNombre;
+    private javax.swing.JLabel etiquetaTelefono;
+    private javax.swing.JPanel fondoAlta;
+    private javax.swing.JLabel presentacionAlta;
+    private javax.swing.JTextField textoContraseña;
+    private javax.swing.JTextField textoCorreo;
+    private javax.swing.JTextField textoDireccion;
+    private javax.swing.JTextField textoNombre;
+    private javax.swing.JTextField textoTelefono;
     // End of variables declaration//GEN-END:variables
 
     class fondoPanel extends JPanel{

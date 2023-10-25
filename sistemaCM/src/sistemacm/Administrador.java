@@ -19,59 +19,59 @@ public class Administrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        bienvenidaAdministrador = new javax.swing.JLabel();
+        nombreAdministrador = new javax.swing.JLabel();
+        botonClientes = new javax.swing.JButton();
+        botonVentas = new javax.swing.JButton();
+        botonEmpleados = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        listaPeticiones = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel2.setText("Bienvenido ");
+        bienvenidaAdministrador.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        bienvenidaAdministrador.setText("Bienvenido ");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel3.setText("jLabel3");
+        nombreAdministrador.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        nombreAdministrador.setText("jLabel3");
 
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton1.setText("Lista de Clientes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonClientes.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonClientes.setText("Lista de Clientes");
+        botonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonClientesActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton2.setText("Mostrar ventas");
+        botonVentas.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonVentas.setText("Mostrar ventas");
 
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton3.setText("Mostrar empleados");
+        botonEmpleados.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonEmpleados.setText("Mostrar empleados");
 
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton4.setText("Agregar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonAgregarActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton5.setText("Actualizar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        botonActualizar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonActualizar.setText("Actualizar");
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botonActualizarActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jButton6.setText("Eliminar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
 
@@ -83,25 +83,25 @@ public class Administrador extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(bienvenidaAdministrador)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nombreAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
+                            .addComponent(botonAgregar)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(botonClientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonVentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonEmpleados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(109, 109, 109)
-                                .addComponent(jButton5)
+                                .addComponent(botonActualizar)
                                 .addGap(107, 107, 107)
-                                .addComponent(jButton6))
+                                .addComponent(botonEliminar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(listaPeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,43 +109,43 @@ public class Administrador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bienvenidaAdministrador)
+                    .addComponent(nombreAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(botonClientes)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton2)
+                        .addComponent(botonVentas)
                         .addGap(44, 44, 44)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane2))
+                        .addComponent(botonEmpleados))
+                    .addComponent(listaPeticiones))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(botonAgregar)
+                    .addComponent(botonActualizar)
+                    .addComponent(botonEliminar))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClientesActionPerformed
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonClientesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+            new ALta().setVisible(true);
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     public static void main(String args[]) {
 
@@ -157,15 +157,15 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel bienvenidaAdministrador;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonClientes;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonEmpleados;
+    private javax.swing.JButton botonVentas;
+    private javax.swing.JScrollPane listaPeticiones;
+    private javax.swing.JLabel nombreAdministrador;
     // End of variables declaration//GEN-END:variables
 
         class fondoPanel extends JPanel{
