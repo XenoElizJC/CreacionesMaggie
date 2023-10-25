@@ -15,11 +15,10 @@ public class Inicio extends javax.swing.JFrame {
     
     fondoPanel fondo = new fondoPanel();
     
-    public static final String URL = "jdbc:mysql://localhost:3306/creacionesm";
-    public static  String USERNAME="root";
-    public static  String PASSWD="Elizabeth20??";
-    public static String roles_id,correo,contraseña;
-    public Inicio conexion = new Inicio();       
+    
+    public static String correo,contraseña;
+    public static int roles_id;
+    public SistemaCM conexion = new SistemaCM();       
     public PreparedStatement  prepared;
     public ResultSet result;
     
@@ -145,27 +144,50 @@ public class Inicio extends javax.swing.JFrame {
         
         try {
             Connection conectar = conexion.getConnection();
-            prepared=conectar.prepareStatement("SELECT * FROM personas Where roles_id = ?");
-            prepared.setString(1, String.valueOf(textoCorreo));
+            prepared=conectar.prepareStatement("SELECT * FROM personas Where correo = ?");
+            prepared.setString(1, String.valueOf(correo));
             result = prepared.executeQuery();
             
                 if(result.next()){
                     
-                    if(result.getString("roles_id")=="1"){
-                         new Administrador().setVisible(true);
-                    }else if(result.getString("roles_id")=="2"){
-                        new Finanzas().setVisible(true);
-                    }else if(result.getString("roles_id")=="3"){
-                        new RecursosHumanos().setVisible(true);
+                   roles_id = result.getInt("roles_id");
+                   String Aux = result.getString("Contraseña");
+                   
+                   if(contraseña.equals(Aux)){
+                   
+                   
+                   switch(roles_id){
+                       
+                       case 1 -> {
+                           new Administrador().setVisible(true);
+                           this.setVisible(false);
                     }
+                           
+                       case 2 -> {
+                           new Finanzas().setVisible(true);
+                           this.setVisible(false);
+                    }
+                           
+                           
+                        case 3 -> {
+                            new RecursosHumanos().setVisible(true);
+                            this.setVisible(false);
+                    }
+                   }
+                   }else{
+                    JOptionPane.showMessageDialog(null, "¡Contraseña incorrecta!");
+                    conectar.close();
+                }
+                 
             }else{
                 JOptionPane.showMessageDialog(null, "¡El usuario no existe!");
             }
-            
+                
             conectar.close();
         }catch (Exception e) {
             System.err.println("Error"+e);
-        }
+        } 
+        
         
     }//GEN-LAST:event_botonIngresarActionPerformed
 
@@ -173,22 +195,7 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoContraseñaActionPerformed
 
-        public Connection getConnection(){
-
-    Connection conexion = null;
-    
-    try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexion = DriverManager.getConnection(URL,USERNAME,PASSWD);
         
-        
-    }catch (Exception e){
-        System.err.println("Error"+e);
-    }
-    
-    
-    return conexion;
-}
         
     public static void main(String args[]) {
 
