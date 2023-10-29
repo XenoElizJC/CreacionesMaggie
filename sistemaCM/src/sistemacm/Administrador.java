@@ -2,15 +2,26 @@ package sistemacm;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 public class Administrador extends javax.swing.JFrame {
     
     fondoPanel fondo = new fondoPanel();
+    public SistemaCM conexion = new SistemaCM();       
+    public PreparedStatement  prepared;
+    public ResultSet result;
+
+    
+    
+    Connection conectar = conexion.getConnection();
 
     public Administrador() {
-        
         this.setContentPane(fondo);
         initComponents();
     }
@@ -27,7 +38,6 @@ public class Administrador extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
-        listaPeticiones = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,7 +45,6 @@ public class Administrador extends javax.swing.JFrame {
         bienvenidaAdministrador.setText("Bienvenido ");
 
         nombreAdministrador.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        nombreAdministrador.setText("jLabel3");
 
         botonClientes.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         botonClientes.setText("Lista de Clientes");
@@ -80,12 +89,8 @@ public class Administrador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenidaAdministrador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botonAgregar)
@@ -93,46 +98,42 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(botonClientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonVentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonEmpleados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
-                                .addComponent(botonActualizar)
-                                .addGap(107, 107, 107)
-                                .addComponent(botonEliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(listaPeticiones, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGap(115, 115, 115)
+                        .addComponent(botonActualizar)
+                        .addGap(222, 222, 222)
+                        .addComponent(botonEliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bienvenidaAdministrador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombreAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bienvenidaAdministrador)
                     .addComponent(nombreAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonClientes)
-                        .addGap(42, 42, 42)
-                        .addComponent(botonVentas)
-                        .addGap(44, 44, 44)
-                        .addComponent(botonEmpleados))
-                    .addComponent(listaPeticiones))
-                .addGap(63, 63, 63)
+                .addComponent(botonClientes)
+                .addGap(42, 42, 42)
+                .addComponent(botonVentas)
+                .addGap(44, 44, 44)
+                .addComponent(botonEmpleados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregar)
                     .addComponent(botonActualizar)
                     .addComponent(botonEliminar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClientesActionPerformed
-        
+
     }//GEN-LAST:event_botonClientesActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
@@ -164,7 +165,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEmpleados;
     private javax.swing.JButton botonVentas;
-    private javax.swing.JScrollPane listaPeticiones;
     private javax.swing.JLabel nombreAdministrador;
     // End of variables declaration//GEN-END:variables
 

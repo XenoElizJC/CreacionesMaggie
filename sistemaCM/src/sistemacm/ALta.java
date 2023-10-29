@@ -2,17 +2,33 @@ package sistemacm;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ALta extends javax.swing.JFrame {
 
     fondoPanel fondo = new fondoPanel();
+  
+    public int n;
+    public SistemaCM conexion = new SistemaCM();       
+    public PreparedStatement  prepared;
+    public ResultSet result;
+    
+    Connection conectar= conexion.getConnection();
+    
+    llenarComboBox re = new llenarComboBox();
     
     public ALta() {
-        
         this.setContentPane(fondo);
         initComponents();
+        
+        re.rellenarComboBox("areas", "area", comboAreas);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +41,6 @@ public class ALta extends javax.swing.JFrame {
         etiquetaCorreo = new javax.swing.JLabel();
         textoCorreo = new javax.swing.JTextField();
         etiquetaContraseña = new javax.swing.JLabel();
-        textoContraseña = new javax.swing.JTextField();
         etiquetaDireccion = new javax.swing.JLabel();
         textoDireccion = new javax.swing.JTextField();
         etiquetaTelefono = new javax.swing.JLabel();
@@ -34,6 +49,9 @@ public class ALta extends javax.swing.JFrame {
         fondoAlta = new fondoPanel2();
         etiquetaArea = new javax.swing.JLabel();
         comboAreas = new javax.swing.JComboBox<>();
+        etiquetaConfirmar = new javax.swing.JLabel();
+        textoContraseña = new javax.swing.JPasswordField();
+        textoConfirmar = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,8 +75,6 @@ public class ALta extends javax.swing.JFrame {
 
         etiquetaContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         etiquetaContraseña.setText("Contraseña");
-
-        textoContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         etiquetaDireccion.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         etiquetaDireccion.setText("Dirección");
@@ -99,20 +115,27 @@ public class ALta extends javax.swing.JFrame {
         etiquetaArea.setText("Área");
 
         comboAreas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        comboAreas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboAreasActionPerformed(evt);
             }
         });
 
+        etiquetaConfirmar.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        etiquetaConfirmar.setText("Confirmar Contraseña");
+
+        textoContraseña.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        textoConfirmar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiquetaDireccion)
                     .addComponent(etiquetaContraseña)
                     .addComponent(etiquetaCorreo)
@@ -120,28 +143,28 @@ public class ALta extends javax.swing.JFrame {
                     .addComponent(etiquetaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textoNombre)
                     .addComponent(textoCorreo)
-                    .addComponent(textoContraseña)
                     .addComponent(etiquetaTelefono)
                     .addComponent(textoDireccion)
                     .addComponent(etiquetaArea)
                     .addComponent(textoTelefono)
-                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaConfirmar)
+                    .addComponent(textoConfirmar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(botonAlta)
-                        .addContainerGap(139, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fondoAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(botonAlta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(fondoAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(presentacionAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addComponent(etiquetaNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,32 +178,34 @@ public class ALta extends javax.swing.JFrame {
                         .addComponent(etiquetaContraseña)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(11, 11, 11)
+                        .addComponent(etiquetaConfirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
                         .addComponent(etiquetaDireccion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiquetaTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiquetaArea)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(botonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(textoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(fondoAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaTelefono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaArea)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void textoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNombreActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_textoNombreActionPerformed
 
     private void textoDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoDireccionActionPerformed
@@ -188,11 +213,88 @@ public class ALta extends javax.swing.JFrame {
     }//GEN-LAST:event_textoDireccionActionPerformed
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        // TODO add your handling code here:
+       
+       int resultado;
+       String contraseña, aux;
+       contraseña = textoContraseña.getText();
+       aux = textoConfirmar.getText();
+       
+       Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+       
+       String correo=textoCorreo.getText();
+ 
+       Matcher mather = pattern.matcher(correo);
+       
+    if(textoContraseña.getText().length()<6)
+    {
+        JOptionPane.showMessageDialog(null, "¡Contraseña muy corta!");
+        textoContraseña.setText(null);
+    }else if(textoContraseña.getText().length()>15){
+        JOptionPane.showMessageDialog(null, "¡Contraseña muy larga!");
+        textoContraseña.setText(null);
+    }else if (mather.find() != true) {
+        JOptionPane.showMessageDialog(null, "¡Correo incorrecto!");
+        textoCorreo.setText(null);
+    }else if(contraseña.equals(aux)){
+        
+        try {
+            
+            prepared = conectar.prepareStatement("INSERT INTO personas(id,rol_id, nombre, correo, contraseña, direccion,telefono,area_id,Soft_Delete)"
+                    + " VALUES (?, ?, ?, ?, ?, ?,?,?,?)");
+            
+            prepared.setString(1, null);
+            prepared.setString(2, "2");
+            prepared.setString(3, textoNombre.getText());
+            prepared.setString(4, textoCorreo.getText());
+            prepared.setString(5, textoContraseña.getText());
+            prepared.setString(6, textoDireccion.getText());
+            prepared.setString(7, textoTelefono.getText());
+            
+            switch(comboAreas.getSelectedItem().toString()){
+                case "Recursos Humanos":
+                    prepared.setInt(8, 1);
+                    break;
+                
+                case "Operaciones":
+                    prepared.setInt(8, 2);
+                    break;
+                    
+                case "Finanzas":
+                    prepared.setInt(8, 3);
+                    break;
+            }
+            
+            prepared.setString(9,"Activo");
+            
+            resultado = prepared.executeUpdate();
+            
+            if(resultado>0){
+                JOptionPane.showMessageDialog(null, "La persona fue registrada");
+                Limpiar();
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No fue posible ingresar a la persona");
+            }
+            
+            conectar.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: "+e+ "Datos ingresados incorrectos. Favor de verificar los datos");
+            System.err.println("ERROR: "+e);
+            Limpiar();
+        }
+        
+    }else{
+        JOptionPane.showMessageDialog(null, "¡Las contraseñas son distintas!");
+        textoContraseña.setText(null);
+        textoConfirmar.setText(null);
+        
+               }
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_comboAreasActionPerformed
 
     public static void main(String args[]) {
@@ -208,6 +310,7 @@ public class ALta extends javax.swing.JFrame {
     private javax.swing.JButton botonAlta;
     private javax.swing.JComboBox<String> comboAreas;
     private javax.swing.JLabel etiquetaArea;
+    private javax.swing.JLabel etiquetaConfirmar;
     private javax.swing.JLabel etiquetaContraseña;
     private javax.swing.JLabel etiquetaCorreo;
     private javax.swing.JLabel etiquetaDireccion;
@@ -215,7 +318,8 @@ public class ALta extends javax.swing.JFrame {
     private javax.swing.JLabel etiquetaTelefono;
     private javax.swing.JPanel fondoAlta;
     private javax.swing.JLabel presentacionAlta;
-    private javax.swing.JTextField textoContraseña;
+    private javax.swing.JPasswordField textoConfirmar;
+    private javax.swing.JPasswordField textoContraseña;
     private javax.swing.JTextField textoCorreo;
     private javax.swing.JTextField textoDireccion;
     private javax.swing.JTextField textoNombre;
@@ -252,4 +356,16 @@ public class ALta extends javax.swing.JFrame {
             super.paint(g);
         }
     }
+
+    public void Limpiar(){
+       
+       textoNombre.setText(null);
+       textoContraseña.setText(null);
+       textoConfirmar.setText(null);
+       textoDireccion.setText(null);
+       textoCorreo.setText(null);
+       textoTelefono.setText(null);
+        
+    }
+
 }

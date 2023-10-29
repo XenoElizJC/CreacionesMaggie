@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,8 +18,8 @@ public class Inicio extends javax.swing.JFrame {
     fondoPanel fondo = new fondoPanel();
     
     
-    public static String correo,contraseña;
-    public static int roles_id;
+    public static String contraseña;
+    public static int rol_id;
     public SistemaCM conexion = new SistemaCM();       
     public PreparedStatement  prepared;
     public ResultSet result;
@@ -43,7 +45,7 @@ public class Inicio extends javax.swing.JFrame {
         etiquetaContraseña = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
         textoContraseña = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        correoVerif = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,9 +90,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("jLabel3");
+        correoVerif.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        correoVerif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +105,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(etiquetaContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textoContraseña)
                     .addComponent(etiquetaCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(correoVerif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(botonIngresar)))
@@ -125,9 +126,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(textoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonIngresar)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(correoVerif, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,9 +140,19 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_textoCorreoActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        correo=textoCorreo.getText();
+        
         contraseña=textoContraseña.getText();
         
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        String correo=textoCorreo.getText();
+ 
+        Matcher mather = pattern.matcher(correo);
+ 
+        if (mather.find() == true) {
+            
         try {
             Connection conectar = conexion.getConnection();
             prepared=conectar.prepareStatement("SELECT * FROM personas Where correo = ?");
@@ -150,13 +161,13 @@ public class Inicio extends javax.swing.JFrame {
             
                 if(result.next()){
                     
-                   roles_id = result.getInt("roles_id");
-                   String Aux = result.getString("Contraseña");
+                   rol_id = result.getInt("rol_id");
+                   String Aux = result.getString("contraseña");
                    
                    if(contraseña.equals(Aux)){
                    
                    
-                   switch(roles_id){
+                   switch(rol_id){
                        
                        case 1 -> {
                            new Administrador().setVisible(true);
@@ -186,7 +197,14 @@ public class Inicio extends javax.swing.JFrame {
             conectar.close();
         }catch (Exception e) {
             System.err.println("Error"+e);
+            
+            correoVerif.setText("");
         } 
+        
+        } else {
+            correoVerif.setText("Correo Incorrecto");
+        }
+        
         
         
     }//GEN-LAST:event_botonIngresarActionPerformed
@@ -208,10 +226,10 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIngresar;
+    private javax.swing.JLabel correoVerif;
     private javax.swing.JLabel etiquetaContraseña;
     private javax.swing.JLabel etiquetaCorreo;
     private javax.swing.JPanel fondoInicio;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField textoContraseña;
     private javax.swing.JTextField textoCorreo;
     // End of variables declaration//GEN-END:variables
