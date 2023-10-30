@@ -18,7 +18,8 @@ public class llenarComboBox {
     public void rellenarComboBox(String tabla, String valor, JComboBox combo){
     try {
             Connection conectar = conexion.getConnection();
-            prepared=conectar.prepareStatement("SELECT * FROM "+tabla);
+            prepared=conectar.prepareStatement("SELECT * FROM "+tabla+" WHERE Soft_Delete = ?");
+            prepared.setString(1, "Activo");
             result = prepared.executeQuery();
             
             while(result.next())

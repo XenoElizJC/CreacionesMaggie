@@ -29,6 +29,7 @@ public class ALta extends javax.swing.JFrame {
         initComponents();
         
         re.rellenarComboBox("areas", "area", comboAreas);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -294,7 +295,7 @@ public class ALta extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
-         
+       
     }//GEN-LAST:event_comboAreasActionPerformed
 
     public static void main(String args[]) {
