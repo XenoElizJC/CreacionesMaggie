@@ -93,7 +93,7 @@ public class Administrador extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "id", "nombre", "correo", "telefono", "area_id"
+                "id", "nombre", "correo", "telefono", "area"
             }
         ));
         jScrollPane1.setViewportView(textoTabla);
@@ -115,13 +115,11 @@ public class Administrador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bienvenidaAdministrador)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAgregar)
-                .addGap(130, 130, 130)
-                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonAgregar)
+                        .addGap(130, 130, 130)
+                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,7 +154,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             Connection conectar= conexion.getConnection();
             
-            prepared = conectar.prepareStatement("SELECT * FROM personas WHERE rol_id=?");
+            prepared = conectar.prepareStatement("SELECT * FROM personas p LEFT JOIN areas a ON p.area_id = a.id WHERE rol_id = ?");
             prepared.setString(1,"3");
             result = prepared.executeQuery();
 
@@ -172,7 +170,7 @@ public class Administrador extends javax.swing.JFrame {
                 fila[1] = result.getString("nombre");
                 fila[2] = result.getString("correo");
                 fila[3] = result.getString("telefono");
-                fila[4] = result.getString("area_id");
+                fila[4] = result.getString("area");
                 
                 model.addRow(fila);
             }
@@ -208,7 +206,7 @@ public class Administrador extends javax.swing.JFrame {
         
         try {
             Connection conectar= conexion.getConnection();
-            prepared = conectar.prepareStatement("SELECT * FROM personas WHERE rol_id=? AND Soft_Delete = ?");
+            prepared = conectar.prepareStatement("SELECT * FROM personas p LEFT JOIN areas a ON p.area_id = a.id WHERE rol_id = ? AND Soft_Delete = ?");
             prepared.setString(1,"2");
             prepared.setString(2,"Activo");
             result = prepared.executeQuery();
@@ -223,7 +221,7 @@ public class Administrador extends javax.swing.JFrame {
                 fila[1] = result.getString("nombre");
                 fila[2] = result.getString("correo");
                 fila[3] = result.getString("telefono");
-                fila[4] = result.getString("area_id");
+                fila[4] = result.getString("area");
                 
                 model.addRow(fila);
             }

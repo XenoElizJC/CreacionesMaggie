@@ -40,14 +40,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nombreAdministrador" min="-2" pref="147" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="botonActualizar" min="-2" pref="287" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-              <Component id="botonActualizar" min="-2" pref="287" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -167,7 +165,7 @@
                 <Column editable="true" title="nombre" type="java.lang.Object"/>
                 <Column editable="true" title="correo" type="java.lang.Object"/>
                 <Column editable="true" title="telefono" type="java.lang.Object"/>
-                <Column editable="true" title="area_id" type="java.lang.Object"/>
+                <Column editable="true" title="area" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
