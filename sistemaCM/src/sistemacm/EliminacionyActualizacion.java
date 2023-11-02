@@ -20,7 +20,7 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
     public ResultSet result;
     public String nombre;
     
-    Connection conectar= conexion.getConnection();
+    
     
     llenarComboBox re = new llenarComboBox();
 
@@ -55,8 +55,13 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setAutoRequestFocus(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 38)); // NOI18N
         jLabel1.setText("Actualización y Eliminación");
@@ -210,7 +215,7 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
         int resultado;
         
         try {
-            
+            Connection conectar= conexion.getConnection();
             prepared = conectar.prepareStatement("UPDATE personas SET Soft_Delete = ?, correo = ?"
                     + "WHERE id = ?");
             
@@ -250,9 +255,10 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
         nombre = nombreCombo.getSelectedItem().toString();
         
         try {
-            
-            prepared=conectar.prepareStatement("SELECT * FROM personas WHERE nombre =?");
+            Connection conectar= conexion.getConnection();
+            prepared=conectar.prepareStatement("SELECT * FROM personas WHERE nombre =? AND Soft_Delete = ?");
             prepared.setString(1, nombre);
+            prepared.setString(2, "Activo");
             result = prepared.executeQuery();
             
                 if(result.next()){
@@ -279,7 +285,7 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
         int resultado;
         
         try {
-            
+            Connection conectar= conexion.getConnection();
             prepared = conectar.prepareStatement("UPDATE personas SET nombre=?,correo=?,contraseña=?,direccion=?,telefono=?"
                     + "WHERE id = ?");
             
@@ -307,6 +313,10 @@ public class EliminacionyActualizacion extends javax.swing.JFrame {
             System.err.println("ERROR: "+e);
         }
     }//GEN-LAST:event_BotonActualizarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
 

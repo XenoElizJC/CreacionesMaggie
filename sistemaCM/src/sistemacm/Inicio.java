@@ -19,7 +19,7 @@ public class Inicio extends javax.swing.JFrame {
     
     
     public static String contraseña;
-    public static int rol_id;
+    public static int area_id;
     public SistemaCM conexion = new SistemaCM();       
     public PreparedStatement  prepared;
     public ResultSet result;
@@ -47,7 +47,12 @@ public class Inicio extends javax.swing.JFrame {
         textoContraseña = new javax.swing.JPasswordField();
         correoVerif = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout fondoInicioLayout = new javax.swing.GroupLayout(fondoInicio);
         fondoInicio.setLayout(fondoInicioLayout);
@@ -161,29 +166,33 @@ public class Inicio extends javax.swing.JFrame {
             
                 if(result.next()){
                     
-                   rol_id = result.getInt("rol_id");
+                   area_id = result.getInt("area_id");
                    String Aux = result.getString("contraseña");
                    
                    if(contraseña.equals(Aux)){
                    
                    
-                   switch(rol_id){
+                   switch(area_id){
                        
                        case 1 -> {
-                           new Administrador().setVisible(true);
+                           new RecursosHumanos().setVisible(true);
                            this.setVisible(false);
                     }
                            
                        case 2 -> {
-                           new Finanzas().setVisible(true);
+                           new Inventarios().setVisible(true);
                            this.setVisible(false);
                     }
                            
                            
                         case 3 -> {
-                            new RecursosHumanos().setVisible(true);
+                            new Finanzas().setVisible(true);
                             this.setVisible(false);
                     }
+                        default-> {
+                            new Administrador().setVisible(true);
+                            this.setVisible(false);
+                           }
                    }
                    }else{
                     JOptionPane.showMessageDialog(null, "¡Contraseña incorrecta!");
@@ -212,6 +221,15 @@ public class Inicio extends javax.swing.JFrame {
     private void textoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoContraseñaActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int result = JOptionPane.showConfirmDialog(this, "¿Desea salir de la Aplicación?", "Seleccione una opción", WIDTH);
+       
+       if(result == JOptionPane.YES_OPTION){
+           setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+           
+    }
+    }//GEN-LAST:event_formWindowClosing
 
         
         

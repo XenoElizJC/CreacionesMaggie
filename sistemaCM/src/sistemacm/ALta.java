@@ -54,7 +54,12 @@ public class ALta extends javax.swing.JFrame {
         textoContraseña = new javax.swing.JPasswordField();
         textoConfirmar = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         presentacionAlta.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         presentacionAlta.setText("Ingrese los datos del empleado");
@@ -297,6 +302,10 @@ public class ALta extends javax.swing.JFrame {
     private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
        
     }//GEN-LAST:event_comboAreasActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
 

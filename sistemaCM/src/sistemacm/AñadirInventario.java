@@ -53,7 +53,12 @@ public class AñadirInventario extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         jPanel1 = new fondoPanel2();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel1.setText("Añadir Producto o material");
@@ -188,11 +193,12 @@ public class AñadirInventario extends javax.swing.JFrame {
                     .addComponent(rolPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(rolTamaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rolTamaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -243,11 +249,11 @@ public class AñadirInventario extends javax.swing.JFrame {
             resultado = prepared.executeUpdate();
             
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "La persona fue registrada");
+                JOptionPane.showMessageDialog(null, "Registro exitoso!");
                 Limpiar();
                 
             }else{
-                JOptionPane.showMessageDialog(null, "No fue posible ingresar a la persona");
+                JOptionPane.showMessageDialog(null, "No fue posible Registrar");
             }
             
             conectar.close();
@@ -258,6 +264,10 @@ public class AñadirInventario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
 
@@ -323,14 +333,14 @@ public class AñadirInventario extends javax.swing.JFrame {
     }
 
     public void Limpiar(){
-       /*
+       
        textoNombre.setText(null);
-       textoContraseña.setText(null);
-       textoConfirmar.setText(null);
-       textoDireccion.setText(null);
-       textoCorreo.setText(null);
-       textoTelefono.setText(null);
-        */
+       textoDescripcion.setText(null);
+       rolCantidad.setValue(0);
+       rolPrecio.setValue(0);
+       rolTamaño.setValue(0);
+       
+       
     }
 
 }

@@ -2,10 +2,12 @@ package sistemacm;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,6 +43,7 @@ public class Inventarios extends javax.swing.JFrame {
                 fila[1] = result.getString("precio");
                 fila[2] = result.getString("tamaño");
                 fila[3] = result.getString("numero_existencia");
+                fila[4] = result.getString("tipo");
                 
                 
                 model.addRow(fila);
@@ -64,7 +67,12 @@ public class Inventarios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         productoTabla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout etiquetaInventariosLayout = new javax.swing.GroupLayout(etiquetaInventarios);
         etiquetaInventarios.setLayout(etiquetaInventariosLayout);
@@ -98,13 +106,13 @@ public class Inventarios extends javax.swing.JFrame {
 
         productoTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "nombre", "precio", "tamaño ", "existencia"
+                "nombre", "precio", "tamaño ", "existencia", "tipo"
             }
         ));
         jScrollPane1.setViewportView(productoTabla);
@@ -150,12 +158,21 @@ public class Inventarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-        
+        new InventariosActElim().setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        
+    new AñadirInventario().setVisible(true);
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int result = JOptionPane.showConfirmDialog(this, "¿Desea salir de la Aplicación?", "Seleccione una opción", WIDTH);
+       
+       if(result == JOptionPane.YES_OPTION){
+           setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+           
+    }
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

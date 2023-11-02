@@ -13,8 +13,9 @@ import javax.swing.table.DefaultTableModel;
 public class Administrador extends javax.swing.JFrame {
     
     fondoPanel fondo = new fondoPanel();
-    public int n;
-    public SistemaCM conexion = new SistemaCM();       
+
+    public SistemaCM conexion = new SistemaCM();  
+    
     public PreparedStatement  prepared;
     public ResultSet result;
     
@@ -38,7 +39,12 @@ public class Administrador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textoTabla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         bienvenidaAdministrador.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         bienvenidaAdministrador.setText("Bienvenido ");
@@ -149,13 +155,14 @@ public class Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClientesActionPerformed
-        n=1;    
+      
         
         try {
-            Connection conectar= conexion.getConnection();
             
-            prepared = conectar.prepareStatement("SELECT * FROM personas p LEFT JOIN areas a ON p.area_id = a.id WHERE rol_id = ?");
+            Connection conectar= conexion.getConnection();
+            prepared = conectar.prepareStatement("SELECT * FROM personas p LEFT JOIN areas a ON p.area_id = a.id WHERE rol_id = ? AND Soft_Delete = ?");
             prepared.setString(1,"3");
+            prepared.setString(2,"Activo");
             result = prepared.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) textoTabla.getModel();
@@ -174,9 +181,9 @@ public class Administrador extends javax.swing.JFrame {
                 
                 model.addRow(fila);
             }
-
-            // Cierra la conexión
             conectar.close();
+            // Cierra la conexión
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,22 +194,13 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-        switch(n){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
+       
                 new EliminacionyActualizacion().setVisible(true);
-                break;
-            default:
-                JOptionPane.showConfirmDialog(null, "Seleccione alguna de las opciones");
-                break;
-        }
+        
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadosActionPerformed
-        n=3;
+       
         
         try {
             Connection conectar= conexion.getConnection();
@@ -225,18 +223,58 @@ public class Administrador extends javax.swing.JFrame {
                 
                 model.addRow(fila);
             }
-
-            // Cierra la conexión
             conectar.close();
+            // Cierra la conexión
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_botonEmpleadosActionPerformed
 
     private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
-        n = 2;
+       try {
+            
+            Connection conectar= conexion.getConnection();
+            prepared = conectar.prepareStatement("SELECT * FROM ventas v "
+                    + "LEFT JOIN personas p ON v.persona_id = p.id "
+                    + "LEFT JOIN inventarios i ON v.inventario_id = i.id "
+                    + "WHERE v.Soft_Delete = ?");
+           
+            prepared.setString(1,"Activo");
+            result = prepared.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) textoTabla.getModel();
+
+            
+            model.setRowCount(0);
+
+            
+            while (result.next()) {
+                Object[] fila = new Object[5]; 
+                fila[0] = result.getString("i.nombre");
+                fila[1] = result.getString("p.nombre");
+                fila[2] = result.getString("v.cantidad");
+                fila[3] = result.getString("v.precio");
+  
+                model.addRow(fila);
+            }
+            conectar.close();
+            // Cierra la conexión
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_botonVentasActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int result = JOptionPane.showConfirmDialog(this, "¿Desea salir de la Aplicación?", "Seleccione una opción", WIDTH);
+       
+       if(result == JOptionPane.YES_OPTION){
+           setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+           
+    }//GEN-LAST:event_formWindowClosing
+    }
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
